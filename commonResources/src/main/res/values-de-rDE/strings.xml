@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">CLA Grill</string>
+
+    <string name="company_name">BMW</string>
+
+    <string name="enter_button_name">Button neue Name eingeben</string>
+    <string name="enter_password">Passwort eingeben</string>
+    <string name="enter_page_name">Seitennamen eingeben</string>
+    <string name="enter_slider_name">Slider Name eingeben</string>
+    <string name="enter_slider_button_name">Slider-Button Namen eingeben</string>
+    <string name="delete_slider_button">Löschen Sie diesen Schieberegler und diese Schaltfläche?</string>
+
+    <string name="add_slider_button">Neuer Slider Button</string>
+    <string name="want_delete_button">Möchten Sie diese Schaltfläche löschen?</string>
+    <string name="msg">Sie können keinen vom Admin erstellten Slider löschen</string>
+    <string name="add_button_and_slider">Neue Schaltflächen und Slider hinzufügen</string>
+    <string name="tap_add_button_and_slider">Tippen Sie hier, um eine neue Aktionsschaltfläche oder einen Slider hinzuzufügen</string>
+    <string name="delete_page">Möchten Sie diese Seite wirklich löschen?</string>
+    <string name="delete_slider">Möchten Sie diesen Slider löschen?</string>
+    <string name="please_select">Bitte auswählen</string>
+    <string name="wrong_password">Falsches Passwort</string>
+    <string name="wifi_not_enabled">WLAN ist nicht aktiviert</string>
+    <string name="one_slider_one_page">Sie können einen Slider pro Seite hinzufügen</string>
+    <string name="correct_button_name">Geben Sie den richtigen Schaltflächennamen ein</string>
+    <string name="correct_slider_name">Geben Sie den richtigen Slider-Namen ein</string>
+    <string name="display_content">Wählen Sie ein Navigationselement aus, um dessen Inhalt anzuzeigen</string>
+    <string name="exception_caught">Ausnahme aufgetreten</string>
+    <string name="Wi_Fi_not_enable">WLAN ist nicht aktiviert</string>
+    <string name="tap_to_disable">Tippen Sie hier, um alle Lichter auf einmal auszuschalten</string>
+    <string name="onclick_onlong">OnClick und OnLongPress</string>
+    <string name="checking">Überprüfung</string>
+    <string name="requirements">Anforderungen</string>
+    <string name="OSC_message">Tippen Sie auf die Schaltfläche, um eine Nachricht zu senden.</string>
+    <string name="long_press">Lang drücken, um die Schaltfläche zu löschen</string>
+    <string name="todo1">WLAN ist mit dem spezifischen Netzwerk verbunden</string>
+    <string name="todo2">MQTT-Server ist verbunden</string>
+    <string name="todo3">Datenbank ist bereit</string>
+    <string name="cannot_delete">Sie können keine vom Admin erstellten Schaltflächen löschen</string>
+    <string name="cannot_delete_page">Sie können keine vom Admin erstellten Seiten löschen</string>
+    <string name="add_page_message">Tippen Sie hier, um eine neue Seite hinzufügen</string>
+    <string name="select_item">Wählen Sie ein Navigationselement aus, um dessen Inhalt anzuzeigen</string>
+    <string name="wifi_not_connected_router">WLAN ist nicht verbunden. Bitte verbinden</string>
+    <string name="mqtt_message">MQTT ist nicht verbunden.Bitte verbinden Sie sich mit dem Broker.</string>
+    <string name="add">Hinzufügen</string>
+    <string name="update">Aktualisieren</string>
+    <string name="connect">Verbinden</string>
+    <string name="enable">Aktivieren</string>
+    <string name="all_off">Alles aus</string>
+    <string name="restart">Showcase neu starten</string>
+    <string name="sp3">ILLUMINIERT VON SP3</string>
+    <string name="yes">Ja</string>
+    <string name="lci">BMW CLA</string>
+    <string name="retry">Erneut versuchen</string>
+    <string name="BMW">BMW CLA</string>
+    <string name="turn_off">Ausschalten</string>
+    <string name="cancel">Abbrechen</string>
+    <string name="confirm">Bestätigen</string>
+    <string name="delete">Löschen</string>
+    <string name="settings">Einstellungen</string>
+    <string name="port_number">Portnummer</string>
+    <string name="app_title">App-Titel</string>
+    <string name="skip">Überspringen</string>
+    <string name="add_slider">Neuer Slider</string>
+    <string name="add_button">Neuer Button</string>
+    <string name="add_page"> Neue Seite</string>
+    <string name="admin_mode">Admin-Modus</string>
+    <string name="contact_us">Kontaktieren Sie uns</string>
+    <string name="SP3_GmbH">SP3 GmbH</string>
+    <string name="address">Keltenring 40, 85658 Egmating</string>
+    <string name="phone">+49 8095 536 980</string>
+    <string name="email">info@s-p-3.de</string>
+    <string name="person">Ansprechpartner</string>
+    <string name="name">Marcel Kowolik</string>
+    <string name="person_email">marcel.kowolik@s-p-3.de</string>
+    <string name="person_phone">+49 160 98073556</string>
+    <string name="version">Version: 1.0.2</string>
+    <string name="shut_down">Ausschalten</string>
+    <string name="shut_down_msg">Tippen Sie hier, um den PC auszuschalten. Bitte prüfen Sie, ob MQTT verbunden ist</string>
+    <string name="shut_down_confirm">Möchten Sie den PC wirklich herunterfahren?</string>
+
+    <string name="no_connection">Verbindung nicht hergestellt</string>
+    <string name="MQTT_not_connected">MQTT ist nicht verbunden</string>
+    <string name="MQTT_client_null">MQTT-Client ist null</string>
+    <string name="failed_send_message">Nachricht konnte nicht gesendet werden:</string>
+    <string name="explation">Bereitstellung von digitalem und physischem Produktinhalt für Ihre Vision</string>
+    <string name="EXPERIENCE">STARTEN SIE IHR LICHTERLEBNIS</string>
+
+    <string name="language">Sprache</string>
+    <string name="language_text">Sie können die bevorzugte Sprache für die App auswählen.</string>
+
+
+    <string name="slider_value">Please enter slider value from 0 to 100 </string>
+
+    <string name="idea">Neue Idee?</string>
+    <string name="idea_s">Klicken Sie hier, um unsere Kontaktdaten zu erfahren.</string>
+
+    <string name="button_controls_title">Schaltflächensteuerung</string>
+
+    <string name="button_controls_description"> • Tippen Sie auf eine Schaltfläche, um einen Befehl an das Modell zu senden.\n
+        • Halten Sie die Schaltfläche gedrückt und ziehen Sie sie, um die Reihenfolge zu ändern.\n
+        • Halten Sie die Schaltfläche gedrückt, ohne sie zu verschieben, um die Optionen „Bearbeiten“ und „Löschen“ zu öffnen.\n
+    </string>
+
+
+    <string name="Model_shut_down">Modell herunterfahren</string>
+
+    <string name="model_shut_down_msg">Tippen Sie hier, um das Modell herunterzufahren.</string>
+
+    <string name="unkompensiert">unkompensiert</string>
+    <string name="kompensiert">kompensiert</string>
+
+    <string name="camera">Demo Relaxed</string>
+    <string name="action">Demo Action</string>
+
+
+</resources>

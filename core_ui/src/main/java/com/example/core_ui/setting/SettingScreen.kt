@@ -17,7 +17,9 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -364,8 +366,8 @@ fun SettingScreen(
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-//                .horizontalScroll(rememberScrollState())
                 .weight(.9f)
+                .verticalScroll(rememberScrollState())
                 .padding(top = 64.dp , end = 64.dp , start = 32.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.SpaceAround
@@ -891,6 +893,137 @@ fun SettingScreen(
             Row(
                 modifier = Modifier
                     .fillMaxWidth(),
+
+                ) {
+                //	Lightbar Armlehne slider
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .weight(1f),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Text(
+                        text = "Lightbar Armlehne",
+                        fontFamily = interFontFamily,
+                        fontWeight = FontWeight.Light,
+                        style = TextStyle(
+                            fontSize = 13.sp,
+                            color = Color.Yellow
+                        )
+                    )
+
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth(),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.Center
+                    ) {
+
+                        Text(
+                            modifier = Modifier
+                                .clickable {
+                                    settingViewModel.selectSlider(SliderType.LIGHTBAR)
+                                    settingViewModel.sliderBtnValueDialogState(true)
+                                },
+                            text = settingViewModel.lightbarSlider.toInt().toString(),
+                            fontFamily = interFontFamily,
+                            fontWeight = FontWeight.Light,
+                            style = TextStyle(
+                                fontSize = 12.sp,
+                                color = Color.Yellow
+                            )
+                        )
+
+                        ColorSlider(
+                            modifier = Modifier
+                                .width(250.dp),
+                            value = settingViewModel.lightbarSlider,
+                            onValueChange = {
+                                settingViewModel.lightbarSlider = it
+
+                                //send mqt msg
+                                mainViewModel.publishMessage(
+                                    "SP3/4469/Settings/Lightbar",
+                                    settingViewModel.lightbarSlider.toString()
+                                )
+                            },
+                            onValueFinished = {},
+                            valueRange = 0.0f..100f,
+                            brush = Brush.horizontalGradient(
+                                colors = listOf(Black, White)
+                            )
+                        )
+                    }
+                }
+                //		StopLight slider
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .weight(1f),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Text(
+                        text = "StopLight",
+                        fontFamily = interFontFamily,
+                        fontWeight = FontWeight.Light,
+                        style = TextStyle(
+                            fontSize = 13.sp,
+                            color = Color.Yellow
+                        )
+
+                    )
+
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth(),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.Center
+                    ) {
+
+                        Text(
+                            modifier = Modifier
+                                .clickable {
+                                    settingViewModel.selectSlider(SliderType.STOPLIGHT)
+                                    settingViewModel.sliderBtnValueDialogState(true)
+                                },
+                            text = settingViewModel.stoplightSlider.toInt().toString(),
+                            fontFamily = interFontFamily,
+                            fontWeight = FontWeight.Light,
+                            style = TextStyle(
+                                fontSize = 12.sp,
+                                color = Color.Yellow
+                            )
+                        )
+
+                        ColorSlider(
+                            modifier = Modifier
+                                .width(250.dp),
+                            value = settingViewModel.stoplightSlider,
+                            onValueChange = {
+
+                                settingViewModel.stoplightSlider = it
+
+                                //send mqt msg
+                                mainViewModel.publishMessage(
+                                    "SP3/4469/Settings/StopLight",
+                                    settingViewModel.stoplightSlider.toString()
+                                )
+                            },
+                            onValueFinished = {},
+                            valueRange = 0.0f..100f,
+                            brush = Brush.horizontalGradient(
+                                colors = listOf(Black, White)
+                            )
+                        )
+                    }
+                }
+            }
+
+
+            //slider 6th row master slider
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth(),
                 ) {
                 //		MASTER Slider slider
                 Column(
@@ -1033,6 +1166,9 @@ fun SettingScreen(
                         )
                     }
                     null -> Unit
+                    SliderType.TurOffnerOut -> TODO()
+                    SliderType.TurOffnerIn -> TODO()
+                    SliderType.Projektor -> TODO()
                 }
             }
         )

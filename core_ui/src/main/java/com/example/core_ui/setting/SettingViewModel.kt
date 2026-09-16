@@ -48,6 +48,7 @@ class SettingViewModel
     var masterSlider by mutableStateOf(0f)
     var turoffnerOutSlider by mutableStateOf(0f)
     var turoffnerInSlider by mutableStateOf(0f)
+    var projectSlider by mutableStateOf(0f)
 
     var showShutDowndialog by mutableStateOf(false)
 
@@ -78,6 +79,9 @@ class SettingViewModel
             SliderType.KARTENTASCHE -> kartentascheSlider = value
             SliderType.LIGHTBAR -> lightbarSlider = value
             SliderType.STOPLIGHT -> stoplightSlider = value
+            SliderType.TurOffnerIn -> turoffnerInSlider = value
+            SliderType.TurOffnerOut -> turoffnerOutSlider = value
+            SliderType.Projektor -> projectSlider = value
             SliderType.MASTER -> masterSlider = value
             null -> Unit
         }

@@ -11,5 +11,8 @@ enum class SliderType {
     KARTENTASCHE,
     LIGHTBAR,
     STOPLIGHT,
+    TurOffnerOut,
+    TurOffnerIn,
+    Projektor,
     MASTER
 }

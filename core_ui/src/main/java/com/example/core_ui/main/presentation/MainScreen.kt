@@ -56,6 +56,7 @@ import com.canopas.lib.showcase.component.ShowcaseStyle
 import com.canopas.lib.showcase.component.rememberIntroShowcaseState
 import com.example.commonresources.R
 import com.example.commonresources.ui.theme.interFontFamily
+import com.example.core_ui.SettingScreen1
 import com.example.core_ui.animation.AnimationScreen
 import com.example.core_ui.component.EnableWifiDialog
 import com.example.core_ui.main.component.AppMode
@@ -479,7 +480,7 @@ fun MainScreen(
                 if (selectedItem?.navigationItem?.navigationItemId == 2L){
 
                     selectedItem?.let { item ->
-                        SettingScreen()
+                        SettingScreen1()
                     }
                         ?: run {
                             // Show a default screen when no item is selected

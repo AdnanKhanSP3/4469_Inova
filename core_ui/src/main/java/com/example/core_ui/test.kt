@@ -109,12 +109,17 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.runtime.derivedStateOf
+import com.example.core_ui.component.SliderType
+import com.example.core_ui.setting.SettingViewModel
 import com.example.database.data.model.ActionButtons
 
 
+/*
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
 @Composable
 fun DynamicScreenTest(
@@ -1704,7 +1709,1250 @@ fun DynamicScreenTest(
     }
 }
 
+ */
 
+@Composable
+fun SettingScreen1(
+    mainViewModel: MainViewModel = hiltViewModel(),
+    settingViewModel: SettingViewModel = hiltViewModel(),
+
+    ) {
+
+    val context = LocalContext.current
+
+    val languageChangeHelper by lazy {
+        LanguageChangeHelper()
+    }
+
+    val listOfLanguages = listOf(
+        com.example.core_ui.Language("de", "Deutsch", R.drawable.germany),
+        com.example.core_ui.Language("en", "English", R.drawable.usa)
+    )
+
+    val currentLanguageCode: String = languageChangeHelper.getLanguageCode(context)
+
+    var currentLanguage by remember { mutableStateOf(currentLanguageCode) }
+
+    val onCurrentLanguageChange: (String) -> Unit = { newLanguage ->
+        currentLanguage = newLanguage
+        languageChangeHelper.changeLanguage(context, newLanguage)
+    }
+
+    val borderColorLanugage by remember { mutableStateOf(White) }
+
+    var borderColor by remember { mutableStateOf(White) }
+    var borderColorAllOff by remember { mutableStateOf(White) }
+
+    //subscribe all slider values
+    LaunchedEffect(Unit) {
+
+        mainViewModel.subscribeTopic(
+            "SP3/4469/Settings/Turgriff"
+        ){
+            settingViewModel.turgriffSlider = it.toFloat()
+        }
+
+        mainViewModel.subscribeTopic(
+            "SP3/4469/Settings/Blinker"
+        ){
+            settingViewModel.blinkerSlider = it.toFloat()
+        }
+
+        mainViewModel.subscribeTopic(
+            "SP3/4469/Settings/Lichtleiste"
+        ){
+            settingViewModel.lichtleisteSlider = it.toFloat()
+        }
+
+        mainViewModel.subscribeTopic(
+            "SP3/4469/Settings/Panel"
+        ){
+            settingViewModel.panelSlider = it.toFloat()
+        }
+
+        mainViewModel.subscribeTopic(
+            "SP3/4469/Settings/Ambiente"
+        ){
+            settingViewModel.ambientSlider = it.toFloat()
+        }
+
+        mainViewModel.subscribeTopic(
+            "SP3/4469/Settings/Kartentasche"
+        ){
+            settingViewModel.kartentascheSlider = it.toFloat()
+        }
+
+        mainViewModel.subscribeTopic(
+            "SP3/4469/Settings/Lightbar"
+        ){
+            settingViewModel.lightbarSlider = it.toFloat()
+        }
+        mainViewModel.subscribeTopic(
+            "SP3/4469/Settings/StopLight"
+        ){
+            settingViewModel.stoplightSlider = it.toFloat()
+        }
+
+        mainViewModel.subscribeTopic(
+            "Sp3/4469/Settings/TuroffnerOut"
+        )
+        {
+            settingViewModel.turoffnerOutSlider = it.toFloat()
+        }
+
+        mainViewModel.subscribeTopic(
+            "Sp3/4469/Settings/TuroffnerIn")
+        {
+            settingViewModel.turoffnerInSlider = it.toFloat()
+        }
+
+        mainViewModel.subscribeTopic(
+            "Sp3/4469/Settings/Projektor")
+        {
+            settingViewModel.turoffnerInSlider = it.toFloat()
+        }
+
+        mainViewModel.subscribeTopic(
+            "SP3/4469/Settings/Master"
+        ){
+            settingViewModel.masterSlider = it.toFloat()
+        }
+    }
+
+    Box(
+        modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.BottomEnd
+    ){
+        Image(
+            modifier = Modifier
+                .height(300.dp)
+                .width(200.dp)
+                .padding(bottom = 130.dp),
+            painter = painterResource(id = R.drawable.round_ball),
+            contentDescription =""
+        )
+    }
+
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp)
+    ) {
+
+        Spacer(modifier = Modifier.height(30.dp))
+
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(100.dp),
+//                .weight(.1f),
+            verticalAlignment = Alignment.Top,
+            horizontalArrangement = Arrangement.SpaceBetween
+        ){
+            Text(
+                text = "Tür Demonstrator",
+                fontFamily = interFontFamily,
+                fontWeight = FontWeight.Medium,
+                style = TextStyle(
+                    fontSize = 35.sp,
+                    color = Color.Yellow
+                )
+            )
+
+            Row(
+                verticalAlignment = Alignment.Top,
+                horizontalArrangement = Arrangement.End
+            ) {
+                com.example.core_ui.LanguagesDropdown(
+                    modifier = Modifier
+                        .width(130.dp)
+                        .height(36.dp)
+                        .clip(RoundedCornerShape(8.dp))
+                        .border(
+                            BorderStroke(1.dp, borderColorLanugage),
+                            shape = RoundedCornerShape(8.dp)
+                        )
+                        .background(Black),
+                    languagesList = listOfLanguages,
+                    currentLanguage,
+                    onCurrentLanguageChange
+                )
+
+                Spacer(
+                    modifier = Modifier.width(16.dp)
+                )
+
+                Box(
+                    modifier = Modifier
+                        .width(130.dp)
+                        .height(36.dp)
+                        .clip(RoundedCornerShape(8.dp))
+                        .border(
+                            BorderStroke(1.dp, borderColorAllOff),
+                            shape = RoundedCornerShape(8.dp)
+                        )
+                        .background(Black)
+                        .pointerInput(Unit) {
+
+                            detectTapGestures(
+                                onTap = {
+                                },
+                                onPress = {
+                                    borderColorAllOff = Color.Yellow
+
+//                                    dynamicScreenViewModel.resetAllButtonStates()
+
+                                    try {
+
+//                                        dynamicScreenViewModel.resetAllButtonStates()
+
+                                        //send mqtt msg
+                                        mainViewModel.publishMessage(
+                                            "allOff",
+                                            "1"
+                                        )
+
+                                        tryAwaitRelease()
+                                        borderColorAllOff = White
+
+                                    } catch (e: Exception) {
+
+                                        withContext(settingViewModel.mainDispatcher) {
+                                            Toast
+                                                .makeText(
+                                                    context,
+                                                    context.getString(R.string.exception_caught)
+                                                            + "${e.message}",
+                                                    Toast.LENGTH_LONG
+                                                )
+                                                .show()
+                                        }
+                                    }
+                                },
+                                onLongPress = {
+                                }
+                            )
+                        },
+                    contentAlignment = Alignment.Center
+                ){
+                    Text(
+                        modifier = Modifier
+                            .padding(6.dp),
+                        text = stringResource(id = R.string.all_off),
+                        fontFamily = interFontFamily,
+                        fontWeight = FontWeight.Light,
+                        style = TextStyle(
+                            fontSize = 12.sp,
+                            color = White
+                        )
+                    )
+                }
+
+                Spacer(
+                    modifier = Modifier.width(16.dp)
+                )
+
+                Box(
+                    modifier = Modifier
+                        .width(120.dp)
+                        .height(36.dp)
+                        .clip(RoundedCornerShape(8.dp))
+                        .border(
+                            BorderStroke(1.dp, borderColor),
+                            shape = RoundedCornerShape(8.dp)
+                        )
+                        .background(Black)
+                        .pointerInput(Unit) {
+
+                            detectTapGestures(
+                                onTap = {
+                                },
+                                onPress = {
+                                    borderColor = Color.Yellow
+                                    try {
+                                        //now show  dialogue box
+                                        settingViewModel.showShutDowndialog = true
+
+                                    } catch (e: Exception) {
+                                        withContext(Dispatchers.Main) {
+                                            Toast
+                                                .makeText(
+                                                    context,
+                                                    context.getString(R.string.exception_caught)
+                                                            + "${e.message}",
+                                                    Toast.LENGTH_LONG
+                                                )
+                                                .show()
+                                        }
+                                    }
+
+                                    try {
+                                        tryAwaitRelease()
+                                        borderColor = White
+
+                                    } catch (e: Exception) {
+
+                                        withContext(Dispatchers.Main) {
+                                            Toast
+                                                .makeText(
+                                                    context,
+                                                    context.getString(R.string.exception_caught)
+                                                            + "${e.message}",
+                                                    Toast.LENGTH_LONG
+                                                )
+                                                .show()
+                                        }
+                                    }
+                                },
+                                onLongPress = {
+                                }
+                            )
+                        },
+                    contentAlignment = Alignment.Center
+                ){
+                    Text(
+                        modifier = Modifier
+                            .padding(6.dp)
+                            .align(Alignment.Center),
+                        text = stringResource(id = R.string.shut_down),
+                        fontFamily = interFontFamily,
+                        fontWeight = FontWeight.Light,
+                        style = TextStyle(
+                            fontSize = 12.sp,
+                            color = White
+                        )
+                    )
+                }
+            }
+        }
+
+        //sliders
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(600.dp)
+                .verticalScroll(rememberScrollState())
+                .padding(top = 64.dp, end = 64.dp, start = 32.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.SpaceAround
+        ) {
+
+            //slider 1st row
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+            ) {
+                //	Türgriff slider
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .weight(1f),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Text(
+                        text = "Türgriff",
+                        fontFamily = interFontFamily,
+                        fontWeight = FontWeight.Light,
+                        style = TextStyle(
+                            fontSize = 13.sp,
+                            color = Color.Yellow
+                        )
+                    )
+
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth(),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.Center
+                    ) {
+
+                        Text(
+                            modifier = Modifier
+                                .clickable {
+                                    settingViewModel.selectSlider(SliderType.TURGRIFF)
+                                    settingViewModel.sliderBtnValueDialogState(true)
+                                },
+                            text = settingViewModel.turgriffSlider.toInt().toString(),
+                            fontFamily = interFontFamily,
+                            fontWeight = FontWeight.Light,
+                            style = TextStyle(
+                                fontSize = 12.sp,
+                                color = Color.Yellow
+                            )
+                        )
+
+                        ColorSlider(
+                            modifier = Modifier
+                                .width(250.dp),
+                            value = settingViewModel.turgriffSlider,
+                            onValueChange = {
+                                settingViewModel.turgriffSlider = it
+
+                                //send mqt msg
+                                mainViewModel.publishMessage(
+                                    "SP3/4469/Settings/Turgriff",
+                                    settingViewModel.turgriffSlider.toString()
+                                )
+                            },
+                            onValueFinished = {
+                                //send mqtt msg
+
+                            },
+                            valueRange = 0.0f..100f,
+                            brush = Brush.horizontalGradient(
+                                colors = listOf(Black, White)
+                            )
+                        )
+                    }
+                }
+                //	Blinker slider
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .weight(1f),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Text(
+                        text = "Blinker",
+                        fontFamily = interFontFamily,
+                        fontWeight = FontWeight.Light,
+                        style = TextStyle(
+                            fontSize = 13.sp,
+                            color = Color.Yellow
+                        )
+                    )
+
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth(),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.Center
+                    ) {
+
+                        Text(
+                            modifier = Modifier
+                                .clickable {
+                                    settingViewModel.selectSlider(SliderType.BLINKER)
+                                    settingViewModel.sliderBtnValueDialogState(true)
+                                },
+                            text = settingViewModel.blinkerSlider.toInt().toString(),
+                            fontFamily = interFontFamily,
+                            fontWeight = FontWeight.Light,
+                            style = TextStyle(
+                                fontSize = 12.sp,
+                                color = Color.Yellow
+                            )
+                        )
+
+                        ColorSlider(
+                            modifier = Modifier
+                                .width(250.dp),
+                            value = settingViewModel.blinkerSlider,
+                            onValueChange = {
+                                settingViewModel.blinkerSlider = it
+
+                                //send mqt msg
+                                mainViewModel.publishMessage(
+                                    "SP3/4469/Settings/Blinker",
+                                    settingViewModel.blinkerSlider.toString()
+                                )
+                            },
+                            onValueFinished = {},
+                            valueRange = 0.0f..100f,
+                            brush = Brush.horizontalGradient(
+                                colors = listOf(Black, White)
+                            )
+                        )
+                    }
+                }
+            }
+            Spacer(modifier = Modifier.height(24.dp))
+            //slider 2nd row
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+            ) {
+                //	Lichtleiste slider
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .weight(1f),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Text(
+                        text = "Lichtleiste",
+                        fontFamily = interFontFamily,
+                        fontWeight = FontWeight.Light,
+                        style = TextStyle(
+                            fontSize = 13.sp,
+                            color = Color.Yellow
+                        )
+                    )
+
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth(),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.Center
+                    ) {
+
+                        Text(
+                            modifier = Modifier
+                                .clickable {
+                                    settingViewModel.selectSlider(SliderType.LICHTLEISTE)
+                                    settingViewModel.sliderBtnValueDialogState(true)
+                                },
+                            text = settingViewModel.lichtleisteSlider.toInt().toString(),
+                            fontFamily = interFontFamily,
+                            fontWeight = FontWeight.Light,
+                            style = TextStyle(
+                                fontSize = 12.sp,
+                                color = Color.Yellow
+                            )
+                        )
+
+                        ColorSlider(
+                            modifier = Modifier
+                                .width(250.dp),
+                            value = settingViewModel.lichtleisteSlider,
+                            onValueChange = {
+                                settingViewModel.lichtleisteSlider = it
+
+                                //send mqt msg
+                                mainViewModel.publishMessage(
+                                    "SP3/4469/Settings/Lichtleiste",
+                                    settingViewModel.lichtleisteSlider.toString()
+                                )
+                            },
+                            onValueFinished = {},
+                            valueRange = 0.0f..100f,
+                            brush = Brush.horizontalGradient(
+                                colors = listOf(Black, White)
+                            )
+                        )
+                    }
+                }
+                //		Panel slider
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .weight(1f),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Text(
+                        text = "Panel",
+                        fontFamily = interFontFamily,
+                        fontWeight = FontWeight.Light,
+                        style = TextStyle(
+                            fontSize = 13.sp,
+                            color = Color.Yellow
+                        )
+                    )
+
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth(),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.Center
+                    ) {
+
+                        Text(
+                            modifier = Modifier
+                                .clickable {
+                                    settingViewModel.selectSlider(SliderType.PANEL)
+                                    settingViewModel.sliderBtnValueDialogState(true)
+                                },
+                            text = settingViewModel.panelSlider.toInt().toString(),
+                            fontFamily = interFontFamily,
+                            fontWeight = FontWeight.Light,
+                            style = TextStyle(
+                                fontSize = 12.sp,
+                                color = Color.Yellow
+                            )
+                        )
+
+                        ColorSlider(
+                            modifier = Modifier
+                                .width(250.dp),
+                            value = settingViewModel.panelSlider,
+                            onValueChange = {
+                                settingViewModel.panelSlider = it
+
+                                //send mqt msg
+                                mainViewModel.publishMessage(
+                                    "SP3/4469/Settings/Panel",
+                                    settingViewModel.panelSlider.toString()
+                                )
+                            },
+                            onValueFinished = {},
+                            valueRange = 0.0f..100f,
+                            brush = Brush.horizontalGradient(
+                                colors = listOf(Black, White)
+                            )
+                        )
+                    }
+                }
+            }
+
+            Spacer(modifier = Modifier.height(36.dp))
+
+            //slider 3rd row
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+            ) {
+                //		Ambiente Türspiegel slider
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .weight(1f),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Text(
+                        text = "Ambiente Türspiegel",
+                        fontFamily = interFontFamily,
+                        fontWeight = FontWeight.Light,
+                        style = TextStyle(
+                            fontSize = 13.sp,
+                            color = Color.Yellow
+                        )
+                    )
+
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth(),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.Center
+                    ) {
+
+                        Text(
+                            modifier = Modifier
+                                .clickable {
+                                    settingViewModel.selectSlider(SliderType.AMBIENT)
+                                    settingViewModel.sliderBtnValueDialogState(true)
+                                },
+                            text = settingViewModel.ambientSlider.toInt().toString(),
+                            fontFamily = interFontFamily,
+                            fontWeight = FontWeight.Light,
+                            style = TextStyle(
+                                fontSize = 12.sp,
+                                color = Color.Yellow
+                            )
+                        )
+
+                        ColorSlider(
+                            modifier = Modifier
+                                .width(250.dp),
+                            value =  settingViewModel.ambientSlider,
+                            onValueChange = {
+
+                                settingViewModel.ambientSlider = it
+
+                                //send mqt msg
+                                mainViewModel.publishMessage(
+                                    "SP3/4469/Settings/Ambiente",
+                                    settingViewModel.ambientSlider.toString()
+                                )
+                            },
+                            onValueFinished = {},
+                            valueRange = 0.0f..100f,
+                            brush = Brush.horizontalGradient(
+                                colors = listOf(Black, White)
+                            )
+                        )
+                    }
+                }
+                //Kartentasche slider
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .weight(1f),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Text(
+                        text = "Kartentasche",
+                        fontFamily = interFontFamily,
+                        fontWeight = FontWeight.Light,
+                        style = TextStyle(
+                            fontSize = 13.sp,
+                            color = Color.Yellow
+                        )
+                    )
+
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth(),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.Center
+                    ) {
+
+                        Text(
+                            modifier = Modifier
+                                .clickable {
+                                    settingViewModel.selectSlider(SliderType.KARTENTASCHE)
+                                    settingViewModel.sliderBtnValueDialogState(true)
+                                },
+                            text = settingViewModel.kartentascheSlider.toInt().toString(),
+                            fontFamily = interFontFamily,
+                            fontWeight = FontWeight.Light,
+                            style = TextStyle(
+                                fontSize = 12.sp,
+                                color = Color.Yellow
+                            )
+                        )
+
+                        ColorSlider(
+                            modifier = Modifier
+                                .width(250.dp),
+                            value = settingViewModel.kartentascheSlider,
+                            onValueChange = {
+
+                                settingViewModel.kartentascheSlider = it
+
+                                //send mqt msg
+                                mainViewModel.publishMessage(
+                                    "SP3/4469/Settings/Kartentasche",
+                                    settingViewModel.kartentascheSlider.toString()
+                                )
+                            },
+                            onValueFinished = {},
+                            valueRange = 0.0f..100f,
+                            brush = Brush.horizontalGradient(
+                                colors = listOf(Black, White)
+                            )
+                        )
+                    }
+                }
+            }
+
+            Spacer(modifier = Modifier.height(36.dp))
+
+            //slider 4th row
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth(),
+
+                ) {
+                //	Lightbar Armlehne slider
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .weight(1f),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Text(
+                        text = "Lightbar Armlehne",
+                        fontFamily = interFontFamily,
+                        fontWeight = FontWeight.Light,
+                        style = TextStyle(
+                            fontSize = 13.sp,
+                            color = Color.Yellow
+                        )
+                    )
+
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth(),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.Center
+                    ) {
+
+                        Text(
+                            modifier = Modifier
+                                .clickable {
+                                    settingViewModel.selectSlider(SliderType.LIGHTBAR)
+                                    settingViewModel.sliderBtnValueDialogState(true)
+                                },
+                            text = settingViewModel.lightbarSlider.toInt().toString(),
+                            fontFamily = interFontFamily,
+                            fontWeight = FontWeight.Light,
+                            style = TextStyle(
+                                fontSize = 12.sp,
+                                color = Color.Yellow
+                            )
+                        )
+
+                        ColorSlider(
+                            modifier = Modifier
+                                .width(250.dp),
+                            value = settingViewModel.lightbarSlider,
+                            onValueChange = {
+                                settingViewModel.lightbarSlider = it
+
+                                //send mqt msg
+                                mainViewModel.publishMessage(
+                                    "SP3/4469/Settings/Lightbar",
+                                    settingViewModel.lightbarSlider.toString()
+                                )
+                            },
+                            onValueFinished = {},
+                            valueRange = 0.0f..100f,
+                            brush = Brush.horizontalGradient(
+                                colors = listOf(Black, White)
+                            )
+                        )
+                    }
+                }
+                //		StopLight slider
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .weight(1f),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Text(
+                        text = "StopLight",
+                        fontFamily = interFontFamily,
+                        fontWeight = FontWeight.Light,
+                        style = TextStyle(
+                            fontSize = 13.sp,
+                            color = Color.Yellow
+                        )
+
+                    )
+
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth(),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.Center
+                    ) {
+
+                        Text(
+                            modifier = Modifier
+                                .clickable {
+                                    settingViewModel.selectSlider(SliderType.STOPLIGHT)
+                                    settingViewModel.sliderBtnValueDialogState(true)
+                                },
+                            text = settingViewModel.stoplightSlider.toInt().toString(),
+                            fontFamily = interFontFamily,
+                            fontWeight = FontWeight.Light,
+                            style = TextStyle(
+                                fontSize = 12.sp,
+                                color = Color.Yellow
+                            )
+                        )
+
+                        ColorSlider(
+                            modifier = Modifier
+                                .width(250.dp),
+                            value = settingViewModel.stoplightSlider,
+                            onValueChange = {
+
+                                settingViewModel.stoplightSlider = it
+
+                                //send mqt msg
+                                mainViewModel.publishMessage(
+                                    "SP3/4469/Settings/StopLight",
+                                    settingViewModel.stoplightSlider.toString()
+                                )
+                            },
+                            onValueFinished = {},
+                            valueRange = 0.0f..100f,
+                            brush = Brush.horizontalGradient(
+                                colors = listOf(Black, White)
+                            )
+                        )
+                    }
+                }
+            }
+
+            Spacer(modifier = Modifier.height(36.dp))
+
+            //slider 5th row
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth(),
+
+                ) {
+                //	TurOffnerIn slider
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .weight(1f),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Text(
+                        text = "TurOffnerIn",
+                        fontFamily = interFontFamily,
+                        fontWeight = FontWeight.Light,
+                        style = TextStyle(
+                            fontSize = 13.sp,
+                            color = Color.Yellow
+                        )
+                    )
+
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth(),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.Center
+                    ) {
+
+                        Text(
+                            modifier = Modifier
+                                .clickable {
+                                    settingViewModel.selectSlider(SliderType.TurOffnerIn)
+                                    settingViewModel.sliderBtnValueDialogState(true)
+                                },
+                            text = settingViewModel.turoffnerInSlider.toInt().toString(),
+                            fontFamily = interFontFamily,
+                            fontWeight = FontWeight.Light,
+                            style = TextStyle(
+                                fontSize = 12.sp,
+                                color = Color.Yellow
+                            )
+                        )
+
+                        ColorSlider(
+                            modifier = Modifier
+                                .width(250.dp),
+                            value = settingViewModel.turoffnerInSlider,
+                            onValueChange = {
+                                settingViewModel.turoffnerInSlider = it
+
+                                //send mqt msg
+                                mainViewModel.publishMessage(
+                                    "SP3/4469/Settings/TuroffnerIn",
+                                    settingViewModel.turoffnerInSlider.toString()
+                                )
+                            },
+                            onValueFinished = {},
+                            valueRange = 0.0f..100f,
+                            brush = Brush.horizontalGradient(
+                                colors = listOf(Black, White)
+                            )
+                        )
+                    }
+                }
+                //		TurOffnerOut slider
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .weight(1f),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Text(
+                        text = "TurOffnerOut",
+                        fontFamily = interFontFamily,
+                        fontWeight = FontWeight.Light,
+                        style = TextStyle(
+                            fontSize = 13.sp,
+                            color = Color.Yellow
+                        )
+
+                    )
+
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth(),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.Center
+                    ) {
+
+                        Text(
+                            modifier = Modifier
+                                .clickable {
+                                    settingViewModel.selectSlider(SliderType.TurOffnerOut)
+                                    settingViewModel.sliderBtnValueDialogState(true)
+                                },
+                            text = settingViewModel.turoffnerOutSlider.toInt().toString(),
+                            fontFamily = interFontFamily,
+                            fontWeight = FontWeight.Light,
+                            style = TextStyle(
+                                fontSize = 12.sp,
+                                color = Color.Yellow
+                            )
+                        )
+
+                        ColorSlider(
+                            modifier = Modifier
+                                .width(250.dp),
+                            value = settingViewModel.turoffnerOutSlider,
+                            onValueChange = {
+
+                                settingViewModel.turoffnerOutSlider = it
+
+                                //send mqt msg
+                                mainViewModel.publishMessage(
+                                    "SP3/4469/Settings/TuroffnerOut",
+                                    settingViewModel.turoffnerOutSlider.toString()
+                                )
+                            },
+                            onValueFinished = {},
+                            valueRange = 0.0f..100f,
+                            brush = Brush.horizontalGradient(
+                                colors = listOf(Black, White)
+                            )
+                        )
+                    }
+                }
+            }
+
+            Spacer(modifier = Modifier.height(36.dp))
+
+            //slider 7th row master slider
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth(),
+            ) {
+                //		Projector Slider slider
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .weight(1f),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Text(
+                        text = "Projektor",
+                        fontFamily = interFontFamily,
+                        fontWeight = FontWeight.Light,
+                        style = TextStyle(
+                            fontSize = 13.sp,
+                            color = Color.Yellow
+                        )
+                    )
+
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth(),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.Center
+                    ) {
+
+                        Text(
+                            modifier = Modifier
+                                .clickable {
+                                    settingViewModel.selectSlider(SliderType.Projektor)
+                                    settingViewModel.sliderBtnValueDialogState(true)
+                                },
+                            text = settingViewModel.projectSlider.toInt().toString(),
+                            fontFamily = interFontFamily,
+                            fontWeight = FontWeight.Light,
+                            style = TextStyle(
+                                fontSize = 12.sp,
+                                color = Color.Yellow
+                            )
+                        )
+
+                        ColorSlider(
+                            modifier = Modifier
+                                .width(250.dp),
+                            value = settingViewModel.projectSlider,
+                            onValueChange = {
+
+                                settingViewModel.projectSlider = it
+
+                                //send mqt msg
+                                mainViewModel.publishMessage(
+                                    "SP3/4469/Settings/Projektor",
+                                    settingViewModel.projectSlider.toString()
+                                )
+                            },
+                            onValueFinished = {},
+                            valueRange = 0.0f..100f,
+                            brush = Brush.horizontalGradient(
+                                colors = listOf(Black, White)
+                            )
+                        )
+                    }
+                }
+
+                //		MASTER Slider slider
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .weight(1f),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Text(
+                        text = "Master",
+                        fontFamily = interFontFamily,
+                        fontWeight = FontWeight.Light,
+                        style = TextStyle(
+                            fontSize = 13.sp,
+                            color = Color.Yellow
+                        )
+                    )
+
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth(),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.Center
+                    ) {
+
+                        Text(
+                            modifier = Modifier
+                                .clickable {
+                                    settingViewModel.selectSlider(SliderType.MASTER)
+                                    settingViewModel.sliderBtnValueDialogState(true)
+                                },
+                            text = settingViewModel.masterSlider.toInt().toString(),
+                            fontFamily = interFontFamily,
+                            fontWeight = FontWeight.Light,
+                            style = TextStyle(
+                                fontSize = 12.sp,
+                                color = Color.Yellow
+                            )
+                        )
+
+                        ColorSlider(
+                            modifier = Modifier
+                                .width(250.dp),
+                            value = settingViewModel.masterSlider,
+                            onValueChange = {
+
+                                settingViewModel.masterSlider = it
+
+                                //send mqt msg
+                                mainViewModel.publishMessage(
+                                    "SP3/4469/Settings/Master",
+                                    settingViewModel.masterSlider.toString()
+                                )
+                            },
+                            onValueFinished = {},
+                            valueRange = 0.0f..100f,
+                            brush = Brush.horizontalGradient(
+                                colors = listOf(Black, White)
+                            )
+                        )
+                    }
+                }
+            }
+        }
+    }
+
+    if (settingViewModel.showSliderBtnValueDialog.value){
+
+        SliderBtnValueDialog(
+            onUpdate = {
+                settingViewModel.setSelectedSliderValue(settingViewModel.updatedSliderBtnValue.toFloat())
+
+                when(settingViewModel.selectedSlider){
+                    SliderType.TURGRIFF ->{
+                        //send mqt msg
+                        mainViewModel.publishMessage(
+                            "SP3/4469/Settings/Turgriff",
+                            settingViewModel.updatedSliderBtnValue.toString()
+                        )
+                    }
+
+                    SliderType.BLINKER -> {
+
+                        //send mqt msg
+                        mainViewModel.publishMessage(
+                            "SP3/4469/Settings/Blinker",
+                            settingViewModel.updatedSliderBtnValue.toString()
+                        )
+                    }
+                    SliderType.LICHTLEISTE -> {
+
+                        //send mqt msg
+                        mainViewModel.publishMessage(
+                            "SP3/4469/Settings/Lichtleiste",
+                            settingViewModel.updatedSliderBtnValue.toString()
+                        )
+                    }
+                    SliderType.PANEL -> {
+                        //send mqt msg
+                        mainViewModel.publishMessage(
+                            "SP3/4469/Settings/Panel",
+                            settingViewModel.updatedSliderBtnValue.toString()
+                        )
+                    }
+                    SliderType.AMBIENT -> {
+                        //send mqt msg
+                        mainViewModel.publishMessage(
+                            "SP3/4469/Settings/Ambiente",
+                            settingViewModel.updatedSliderBtnValue.toString()
+                        )
+                    }
+                    SliderType.KARTENTASCHE -> {
+
+                        //send mqt msg
+                        mainViewModel.publishMessage(
+                            "SP3/4469/Settings/Kartentasche",
+                            settingViewModel.updatedSliderBtnValue.toString()
+                        )
+                    }
+                    SliderType.LIGHTBAR -> {
+
+                        //send mqt msg
+                        mainViewModel.publishMessage(
+                            "SP3/4469/Settings/Lightbar",
+                            settingViewModel.updatedSliderBtnValue.toString()
+                        )
+                    }
+                    SliderType.STOPLIGHT -> {
+
+                        //send mqt msg
+                        mainViewModel.publishMessage(
+                            "SP3/4469/Settings/StopLight",
+                            settingViewModel.updatedSliderBtnValue.toString()
+                        )
+                    }
+
+                    SliderType.TurOffnerIn -> {
+
+                        //send mqt msg
+                        mainViewModel.publishMessage(
+                            "SP3/4469/Settings/TuroffnerIn",
+                            settingViewModel.updatedSliderBtnValue.toString()
+                        )
+                    }
+
+                    SliderType.TurOffnerOut -> {
+
+                        //send mqt msg
+                        mainViewModel.publishMessage(
+                            "SP3/4469/Settings/TuroffnerOut",
+                            settingViewModel.updatedSliderBtnValue.toString()
+                        )
+                    }
+                    SliderType.Projektor -> {
+
+                        //send mqt msg
+                        mainViewModel.publishMessage(
+                            "SP3/4469/Settings/Projektor",
+                            settingViewModel.updatedSliderBtnValue.toString()
+                        )
+                    }
+
+                    SliderType.MASTER -> {
+                        //send mqt msg
+                        mainViewModel.publishMessage(
+                            "SP3/4469/Settings/Master",
+                            settingViewModel.updatedSliderBtnValue.toString()
+                        )
+                    }
+                    null -> Unit
+                }
+            }
+        )
+    }
+
+    if (settingViewModel.showShutDowndialog){
+        ShutDownDialog(
+            onShutDown = {
+
+                //send shutDown message
+                mainViewModel.publishMessage(
+                    "PC/shutdown",
+                    "1"
+                )
+
+//                settingViewModel.resetAllButtonStates()
+
+
+                settingViewModel.showShutDowndialog = false
+            },
+            onDismiss = {
+                settingViewModel.showShutDowndialog = false
+            }
+        )
+    }
+}
 
 @Composable
 fun LanguagesDropdown(

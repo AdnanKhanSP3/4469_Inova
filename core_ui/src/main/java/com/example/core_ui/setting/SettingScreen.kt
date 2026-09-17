@@ -368,7 +368,7 @@ fun SettingScreen(
                 .fillMaxWidth()
                 .weight(.9f)
                 .verticalScroll(rememberScrollState())
-                .padding(top = 64.dp , end = 64.dp , start = 32.dp),
+                .padding(top = 64.dp, end = 64.dp, start = 32.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.SpaceAround
         ) {
@@ -503,6 +503,7 @@ fun SettingScreen(
                 }
             }
 
+            Spacer(modifier = Modifier.height(24.dp))
             //slider 2nd row
             Row(
                 modifier = Modifier
@@ -629,6 +630,7 @@ fun SettingScreen(
                     }
                 }
             }
+
 
             //slider 3rd row
             Row(

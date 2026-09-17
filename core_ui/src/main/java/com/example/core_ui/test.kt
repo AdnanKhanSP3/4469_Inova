@@ -1988,12 +1988,13 @@ fun SettingScreen1(
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(470.dp)
+                .height(480.dp)
                 .verticalScroll(rememberScrollState())
                 .padding(top = 64.dp, end = 64.dp, start = 32.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.SpaceAround
         ) {
+
 
             //slider 1st row
             Row(
@@ -2124,7 +2125,9 @@ fun SettingScreen1(
                     }
                 }
             }
-            Spacer(modifier = Modifier.height(24.dp))
+
+
+            Spacer(modifier = Modifier.height(50.dp))
             //slider 2nd row
             Row(
                 modifier = Modifier
@@ -2252,7 +2255,7 @@ fun SettingScreen1(
                 }
             }
 
-            Spacer(modifier = Modifier.height(36.dp))
+            Spacer(modifier = Modifier.height(50.dp))
 
             //slider 3rd row
             Row(
@@ -2383,7 +2386,7 @@ fun SettingScreen1(
                 }
             }
 
-            Spacer(modifier = Modifier.height(36.dp))
+            Spacer(modifier = Modifier.height(50.dp))
 
             //slider 4th row
             Row(
@@ -2515,7 +2518,7 @@ fun SettingScreen1(
                 }
             }
 
-            Spacer(modifier = Modifier.height(36.dp))
+            Spacer(modifier = Modifier.height(50.dp))
 
             //slider 5th row
             Row(
@@ -2647,7 +2650,7 @@ fun SettingScreen1(
                 }
             }
 
-            Spacer(modifier = Modifier.height(36.dp))
+            Spacer(modifier = Modifier.height(50.dp))
 
             //slider 6th row master slider
             Row(

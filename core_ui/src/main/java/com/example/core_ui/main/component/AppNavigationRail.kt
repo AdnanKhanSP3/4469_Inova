@@ -1,7 +1,6 @@
 package com.example.core_ui.main.component
 
 
-import android.util.Log
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -24,7 +23,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.unit.dp
 import com.example.database.data.model.NavigationItem
@@ -96,24 +94,21 @@ fun AppNavigationRail(
                         Box {
 
                             NavigationRailItem(
-                                modifier = Modifier
-                                    .draggableHandle(
-                                    onDragStarted = {
-                                        Log.d("TAG", "AppNavigationRail: drag started")
-                                        hapticFeedback.performHapticFeedback(
-                                            HapticFeedbackType.LongPress
-                                        )
-                                    },
-                                    onDragStopped = {
-                                        Log.d("TAG", "AppNavigationRail: drag stopped")
-                                        hapticFeedback.performHapticFeedback(
-                                            HapticFeedbackType.LongPress
-                                        )
-
-                                        onDragEnd()
-                                    }
-                                )
-                                ,
+                                modifier = Modifier,
+//                                    .draggableHandle(
+//                                    onDragStarted = {
+//                                        hapticFeedback.performHapticFeedback(
+//                                            HapticFeedbackType.LongPress
+//                                        )
+//                                    },
+//                                    onDragStopped = {
+//                                        hapticFeedback.performHapticFeedback(
+//                                            HapticFeedbackType.LongPress
+//                                        )
+//
+//                                        onDragEnd()
+//                                    }
+//                                ),
                                 icon = Icons.Filled.Home,
                                 text = item.navigationItem!!.label,
                                 onClick = {

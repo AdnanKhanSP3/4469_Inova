@@ -235,7 +235,8 @@ fun MainScreen(
                                 Toast.makeText(context,
                                     context.getString(R.string.cannot_delete_page),
                                     Toast.LENGTH_SHORT).show()
-                            }else
+                            }
+                            else
                             {
                                 selectedItemToDelete = it
                                 mainViewModel.deleteDialogItemState(true)

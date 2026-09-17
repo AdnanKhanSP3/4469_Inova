@@ -708,6 +708,7 @@ fun AnimationScreen(
                                                 horizontalArrangement = Arrangement.SpaceAround
                                             ) {
 
+                                                /*
                                                 if (button.isFavorite)
                                                 {
                                                     Icon(
@@ -749,6 +750,8 @@ fun AnimationScreen(
                                                         tint = White
                                                     )
                                                 }
+
+                                                 */
 
                                                 Text(
                                                     modifier = Modifier,

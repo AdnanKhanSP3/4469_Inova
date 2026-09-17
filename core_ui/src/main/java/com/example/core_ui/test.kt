@@ -2036,7 +2036,7 @@ fun SettingScreen1(
                             fontWeight = FontWeight.Light,
                             style = TextStyle(
                                 fontSize = 12.sp,
-                                color = Color.Yellow
+                                color = Color.White
                             )
                         )
 
@@ -2099,7 +2099,7 @@ fun SettingScreen1(
                             fontWeight = FontWeight.Light,
                             style = TextStyle(
                                 fontSize = 12.sp,
-                                color = Color.Yellow
+                                color = Color.White
                             )
                         )
 
@@ -2168,7 +2168,7 @@ fun SettingScreen1(
                             fontWeight = FontWeight.Light,
                             style = TextStyle(
                                 fontSize = 12.sp,
-                                color = Color.Yellow
+                                color = Color.White
                             )
                         )
 
@@ -2228,7 +2228,7 @@ fun SettingScreen1(
                             fontWeight = FontWeight.Light,
                             style = TextStyle(
                                 fontSize = 12.sp,
-                                color = Color.Yellow
+                                color = Color.White
                             )
                         )
 
@@ -2297,7 +2297,7 @@ fun SettingScreen1(
                             fontWeight = FontWeight.Light,
                             style = TextStyle(
                                 fontSize = 12.sp,
-                                color = Color.Yellow
+                                color = Color.White
                             )
                         )
 
@@ -2358,7 +2358,7 @@ fun SettingScreen1(
                             fontWeight = FontWeight.Light,
                             style = TextStyle(
                                 fontSize = 12.sp,
-                                color = Color.Yellow
+                                color = Color.White
                             )
                         )
 
@@ -2429,7 +2429,7 @@ fun SettingScreen1(
                             fontWeight = FontWeight.Light,
                             style = TextStyle(
                                 fontSize = 12.sp,
-                                color = Color.Yellow
+                                color = Color.White
                             )
                         )
 
@@ -2490,7 +2490,7 @@ fun SettingScreen1(
                             fontWeight = FontWeight.Light,
                             style = TextStyle(
                                 fontSize = 12.sp,
-                                color = Color.Yellow
+                                color = Color.White
                             )
                         )
 
@@ -2561,7 +2561,7 @@ fun SettingScreen1(
                             fontWeight = FontWeight.Light,
                             style = TextStyle(
                                 fontSize = 12.sp,
-                                color = Color.Yellow
+                                color = Color.White
                             )
                         )
 
@@ -2622,7 +2622,7 @@ fun SettingScreen1(
                             fontWeight = FontWeight.Light,
                             style = TextStyle(
                                 fontSize = 12.sp,
-                                color = Color.Yellow
+                                color = Color.White
                             )
                         )
 
@@ -2693,7 +2693,7 @@ fun SettingScreen1(
                             fontWeight = FontWeight.Light,
                             style = TextStyle(
                                 fontSize = 12.sp,
-                                color = Color.Yellow
+                                color = Color.White
                             )
                         )
 
@@ -2774,7 +2774,7 @@ fun SettingScreen1(
                         fontWeight = FontWeight.Light,
                         style = TextStyle(
                             fontSize = 12.sp,
-                            color = Color.Yellow
+                            color = Color.White
                         )
                     )
 

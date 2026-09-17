@@ -1,82 +1,45 @@
 package com.example.core_ui
 
-import android.util.Log
 import android.widget.Toast
-import androidx.activity.compose.BackHandler
 import androidx.annotation.DrawableRes
-import androidx.compose.animation.animateColorAsState
-import androidx.compose.animation.animateContentSize
-import androidx.compose.animation.core.Animatable
-import androidx.compose.animation.core.EaseOut
-import androidx.compose.animation.core.animateDpAsState
-import androidx.compose.animation.core.animateFloatAsState
-import androidx.compose.animation.core.tween
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.gestures.detectDragGesturesAfterLongPress
 import androidx.compose.foundation.gestures.detectTapGestures
-import androidx.compose.foundation.indication
-import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.GridItemSpan
-import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.lazy.grid.items
-import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Favorite
-import androidx.compose.material.icons.outlined.Favorite
-import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateMapOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Color.Companion.Black
 import androidx.compose.ui.graphics.Color.Companion.White
-import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.layout.boundsInWindow
-import androidx.compose.ui.layout.onGloballyPositioned
-import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -85,9 +48,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.canopas.lib.showcase.IntroShowcase
-import com.canopas.lib.showcase.component.IntroShowcaseState
-import com.canopas.lib.showcase.component.ShowcaseStyle
 import com.example.commonresources.R
 import com.example.commonresources.ui.theme.interFontFamily
 import com.example.core_ui.component.DragGestureAnimation
@@ -97,9 +57,7 @@ import com.example.core_ui.dynamicscreen.component.CustomReorderableItem
 import com.example.core_ui.dynamicscreen.component.DeleteDialog
 import com.example.core_ui.dynamicscreen.component.LanguageChangeHelper
 import com.example.core_ui.dynamicscreen.component.SliderBtnValueDialog
-import com.example.core_ui.dynamicscreen.component.UpdateSliderBtnDialog
-import com.example.core_ui.dynamicscreen.component.rememberCustomReorderableGridState
-import com.example.core_ui.dynamicscreen.presentation.DynamicScreenViewModel
+
 import com.example.core_ui.main.component.ColorSlider
 import com.example.core_ui.main.presentation.MainViewModel
 import com.example.database.data.model.NavigationItemWithActionButtons
@@ -2030,7 +1988,7 @@ fun SettingScreen1(
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(600.dp)
+                .height(470.dp)
                 .verticalScroll(rememberScrollState())
                 .padding(top = 64.dp, end = 64.dp, start = 32.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
@@ -2055,7 +2013,7 @@ fun SettingScreen1(
                         fontWeight = FontWeight.Light,
                         style = TextStyle(
                             fontSize = 13.sp,
-                            color = Color.Yellow
+                            color = Color.White
                         )
                     )
 
@@ -2118,7 +2076,7 @@ fun SettingScreen1(
                         fontWeight = FontWeight.Light,
                         style = TextStyle(
                             fontSize = 13.sp,
-                            color = Color.Yellow
+                            color = Color.White
                         )
                     )
 
@@ -2185,7 +2143,7 @@ fun SettingScreen1(
                         fontWeight = FontWeight.Light,
                         style = TextStyle(
                             fontSize = 13.sp,
-                            color = Color.Yellow
+                            color = Color.White
                         )
                     )
 
@@ -2245,7 +2203,7 @@ fun SettingScreen1(
                         fontWeight = FontWeight.Light,
                         style = TextStyle(
                             fontSize = 13.sp,
-                            color = Color.Yellow
+                            color = Color.White
                         )
                     )
 
@@ -2314,7 +2272,7 @@ fun SettingScreen1(
                         fontWeight = FontWeight.Light,
                         style = TextStyle(
                             fontSize = 13.sp,
-                            color = Color.Yellow
+                            color = Color.White
                         )
                     )
 
@@ -2375,7 +2333,7 @@ fun SettingScreen1(
                         fontWeight = FontWeight.Light,
                         style = TextStyle(
                             fontSize = 13.sp,
-                            color = Color.Yellow
+                            color = Color.White
                         )
                     )
 
@@ -2446,7 +2404,7 @@ fun SettingScreen1(
                         fontWeight = FontWeight.Light,
                         style = TextStyle(
                             fontSize = 13.sp,
-                            color = Color.Yellow
+                            color = Color.White
                         )
                     )
 
@@ -2506,7 +2464,7 @@ fun SettingScreen1(
                         fontWeight = FontWeight.Light,
                         style = TextStyle(
                             fontSize = 13.sp,
-                            color = Color.Yellow
+                            color = Color.White
                         )
 
                     )
@@ -2578,7 +2536,7 @@ fun SettingScreen1(
                         fontWeight = FontWeight.Light,
                         style = TextStyle(
                             fontSize = 13.sp,
-                            color = Color.Yellow
+                            color = Color.White
                         )
                     )
 
@@ -2638,7 +2596,7 @@ fun SettingScreen1(
                         fontWeight = FontWeight.Light,
                         style = TextStyle(
                             fontSize = 13.sp,
-                            color = Color.Yellow
+                            color = Color.White
                         )
 
                     )
@@ -2691,10 +2649,11 @@ fun SettingScreen1(
 
             Spacer(modifier = Modifier.height(36.dp))
 
-            //slider 7th row master slider
+            //slider 6th row master slider
             Row(
                 modifier = Modifier
                     .fillMaxWidth(),
+                
             ) {
                 //		Projector Slider slider
                 Column(
@@ -2709,7 +2668,7 @@ fun SettingScreen1(
                         fontWeight = FontWeight.Light,
                         style = TextStyle(
                             fontSize = 13.sp,
-                            color = Color.Yellow
+                            color = White
                         )
                     )
 
@@ -2757,67 +2716,85 @@ fun SettingScreen1(
                         )
                     }
                 }
-
-                //		MASTER Slider slider
+                
                 Column(
                     modifier = Modifier
                         .fillMaxWidth()
                         .weight(1f),
-                    horizontalAlignment = Alignment.CenterHorizontally
+
                 ) {
+
+                }
+
+            }
+        }
+
+        Spacer(modifier = Modifier.height(24.dp))
+        //slider 8th row master slider
+        Row(
+            modifier = Modifier
+                .fillMaxWidth(),
+        ) {
+
+            // MASTER Slider slider
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .weight(1f),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Text(
+                    text = "Master",
+                    fontFamily = interFontFamily,
+                    fontWeight = FontWeight.Light,
+                    style = TextStyle(
+                        fontSize = 13.sp,
+                        color = Color.White
+                    )
+                )
+
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth(),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.Center
+                ) {
+
                     Text(
-                        text = "Master",
+                        modifier = Modifier
+                            .clickable {
+                                settingViewModel.selectSlider(SliderType.MASTER)
+                                settingViewModel.sliderBtnValueDialogState(true)
+                            },
+                        text = settingViewModel.masterSlider.toInt().toString(),
                         fontFamily = interFontFamily,
                         fontWeight = FontWeight.Light,
                         style = TextStyle(
-                            fontSize = 13.sp,
+                            fontSize = 12.sp,
                             color = Color.Yellow
                         )
                     )
 
-                    Row(
+                    ColorSlider(
                         modifier = Modifier
-                            .fillMaxWidth(),
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.Center
-                    ) {
+                            .width(250.dp),
+                        value = settingViewModel.masterSlider,
+                        onValueChange = {
 
-                        Text(
-                            modifier = Modifier
-                                .clickable {
-                                    settingViewModel.selectSlider(SliderType.MASTER)
-                                    settingViewModel.sliderBtnValueDialogState(true)
-                                },
-                            text = settingViewModel.masterSlider.toInt().toString(),
-                            fontFamily = interFontFamily,
-                            fontWeight = FontWeight.Light,
-                            style = TextStyle(
-                                fontSize = 12.sp,
-                                color = Color.Yellow
+                            settingViewModel.masterSlider = it
+
+                            //send mqt msg
+                            mainViewModel.publishMessage(
+                                "SP3/4469/Settings/Master",
+                                settingViewModel.masterSlider.toString()
                             )
+                        },
+                        onValueFinished = {},
+                        valueRange = 0.0f..100f,
+                        brush = Brush.horizontalGradient(
+                            colors = listOf(Black, White)
                         )
-
-                        ColorSlider(
-                            modifier = Modifier
-                                .width(250.dp),
-                            value = settingViewModel.masterSlider,
-                            onValueChange = {
-
-                                settingViewModel.masterSlider = it
-
-                                //send mqt msg
-                                mainViewModel.publishMessage(
-                                    "SP3/4469/Settings/Master",
-                                    settingViewModel.masterSlider.toString()
-                                )
-                            },
-                            onValueFinished = {},
-                            valueRange = 0.0f..100f,
-                            brush = Brush.horizontalGradient(
-                                colors = listOf(Black, White)
-                            )
-                        )
-                    }
+                    )
                 }
             }
         }

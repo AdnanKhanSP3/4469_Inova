@@ -547,6 +547,7 @@ fun AnimationScreen(
                             mainViewModel.subscribeTopic(
                                 "SP3/4469/${navigationWithButtons.navigationItem!!.label}/${action}"
                             ){
+                                Log.d("MQTT","$topic = ${"SP3/4469/${navigationWithButtons.navigationItem!!.label}/${action}"}")
                                 if (it.equals("1")){
                                     animationViewModel.toggleButtonState(action , true)
                                 }else {

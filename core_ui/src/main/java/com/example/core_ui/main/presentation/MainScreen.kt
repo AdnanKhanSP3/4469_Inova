@@ -137,9 +137,9 @@ fun MainScreen(
         }
 
         mainViewModel.subscribeTopic(
-            topic = "SP3/4469/Kamera",
+            topic = "SP3/4469/Demo1",
             ){ value ->
-            Log.d("kamera","$value")
+            Log.d("Demo1","$value")
             if(value == "1"){
                 //turn on switch
                 mainViewModel.demoSwitch = true
@@ -151,7 +151,7 @@ fun MainScreen(
         }
 
         mainViewModel.subscribeTopic(
-            topic = "SP3/4469/warm_white",
+            topic = "SP3/4469/Demo2",
         ){value ->
             if(value == "1"){
                 //turn on switch
@@ -301,12 +301,12 @@ fun MainScreen(
 
                                     if (mainViewModel.demoSwitch){
                                         mainViewModel.publishMessage(
-                                            "SP3/4469/Kamera",
+                                            "SP3/4469/Demo1",
                                             "1"
                                         )
                                     }else{
                                         mainViewModel.publishMessage(
-                                            "SP3/4469/Kamera",
+                                            "SP3/4469/Demo1",
                                             "0"
                                         )
                                     }
@@ -349,12 +349,12 @@ fun MainScreen(
 
                                     if (mainViewModel.demoAction){
                                         mainViewModel.publishMessage(
-                                            "SP3/4469/warm_white",
+                                            "SP3/4469/Demo2",
                                             "1"
                                         )
                                     }else{
                                         mainViewModel.publishMessage(
-                                            "SP3/4469/warm_white",
+                                            "SP3/4469/Demo2",
                                             "0"
                                         )
                                     }

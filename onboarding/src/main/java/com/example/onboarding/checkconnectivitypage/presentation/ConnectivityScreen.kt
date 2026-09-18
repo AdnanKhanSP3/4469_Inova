@@ -107,8 +107,8 @@ fun ConnectivityScreenWrapper(
                         viewModel.updateTask1Checked(false)
 
                     }
-//                else if (status.ssid != "4412 CLA Grill #2") {
-                else if (status.ssid != "SP3") {
+                else if (status.ssid != "4469 LiFu Tür Demonstrator") {
+//                else if (status.ssid != "SP3") {
 
                     viewModel.showModelWifiDialogState(true)
 

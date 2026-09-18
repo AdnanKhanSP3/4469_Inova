@@ -18,8 +18,8 @@ class WifiStatusViewModel
     private val wifiStatusObserver: WifiStatusObserver
 ) : ViewModel() {
 
-//    private val targetSsid = MutableStateFlow("4412 CLA Grill #2") // set from UI
-    private val targetSsid = MutableStateFlow("SP3") // set from UI
+    private val targetSsid = MutableStateFlow("4469 LiFu Tür Demonstrator") // set from UI
+//    private val targetSsid = MutableStateFlow("SP3") // set from UI
 
     val wifiStatus: StateFlow<WifiStatus> =
         targetSsid

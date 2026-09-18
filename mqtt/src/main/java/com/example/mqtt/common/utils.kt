@@ -12,7 +12,7 @@ class utils {
         const val wifi_ssid = "4469 Inova Türdemonstrator"
         const val MQTTHostName = "4469 Inova Türdemonstrator"
 //        val mqttServerUri = "tcp://192.168.13.125:1883"
-        val mqttServerUri = "tcp://192.168.13.57:1883"
+        val mqttServerUri = "tcp://192.168.0.187:1883"
 
     }
 }

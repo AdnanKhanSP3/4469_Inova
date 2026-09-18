@@ -70,8 +70,6 @@ import com.example.core_ui.component.KeepScreenOn
 import com.example.core_ui.component.MQTTDialog
 import com.example.core_ui.main.component.NotificationView
 import com.example.core_ui.main.component.PermanentSnackbar
-import com.example.core_ui.setting.SettingScreen
-import kotlinx.coroutines.selects.select
 
 @RequiresApi(Build.VERSION_CODES.Q)
 @Composable
@@ -543,8 +541,8 @@ fun MainScreen(
 
                 mainViewModel.showModelWifiDialogState(true)
 
-//            } else if (status.ssid != "4412 CLA Grill #2") {
-            } else if (status.ssid != "SP3") {
+            } else if (status.ssid != "4469 LiFu Tür Demonstrator") {
+//            } else if (status.ssid != "SP3") {
 
                 mainViewModel.showModelWifiDialogState(true)
 
